@@ -1,0 +1,49 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:rarolabs/src/view/pages/user_profile/user_profile_viewmodel.dart';
+
+// Mock listener to verify if `notifyListeners` was called.
+class MockListener extends Mock {
+  void call();
+}
+
+void main() {
+  late UserProfileViewModel viewModel;
+
+  setUp(() {
+    viewModel = UserProfileViewModel();
+  });
+
+  group('UserProfileViewModel Unit Tests', () {
+    test('Initial state should be correct (all properties are empty)', () {
+      // Assert
+      expect(viewModel.jobTitle, isEmpty);
+      expect(viewModel.jobArea, isEmpty);
+      expect(viewModel.biography, isEmpty);
+    });
+
+    group('generateFakeData', () {
+      test('Should populate properties with non-empty strings', () {
+        // Act
+        viewModel.generateFakeData();
+
+        // Assert
+        expect(viewModel.jobTitle, isNotEmpty);
+        expect(viewModel.jobArea, isNotEmpty);
+        expect(viewModel.biography, isNotEmpty);
+      });
+
+      test('Should notify listeners after generating data', () {
+        // Arrange
+        final listener = MockListener();
+        viewModel.addListener(listener);
+
+        // Act
+        viewModel.generateFakeData();
+
+        // Assert
+        verify(listener.call()).called(1);
+      });
+    });
+  });
+}
