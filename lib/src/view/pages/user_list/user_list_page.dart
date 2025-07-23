@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rarolabs/l10n/app_localizations.dart';
 import 'package:rarolabs/src/view/pages/user_list/user_list_viewmodel.dart';
 import 'package:rarolabs/src/view/pages/user_profile/user_profile_page.dart';
 import 'package:rarolabs/src/view/widgets/user_tile.dart';
@@ -65,15 +66,16 @@ class _UserListPageState extends State<UserListPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<UserListViewModel>();
+    final locale = AppLocalizations.of(context);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Usuários'),
+        title: Text('${locale.users}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
             onPressed: _logout,
-            tooltip: 'Sair',
+            tooltip: '${locale.logout}',
           )
         ],
       ),
@@ -86,7 +88,7 @@ class _UserListPageState extends State<UserListPage> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: 'Buscar por nome...',
+                  hintText: '${locale.userListSearchByName}',
                   prefixIcon: const Icon(Icons.search),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(30),
@@ -121,11 +123,13 @@ class _UserListPageState extends State<UserListPage> {
     }
 
     if (viewModel.filteredUsers.isEmpty && _searchController.text.isNotEmpty) {
-      return const Center(child: Text('Nenhum usuário encontrado.'));
+      final locale = AppLocalizations.of(context);
+      return Center(child: Text('${locale.userListNotFound}'));
     }
 
     if (viewModel.users.isEmpty) {
-      return const Center(child: Text('Nenhum usuário para exibir.'));
+      final locale = AppLocalizations.of(context);
+      return Center(child: Text('${locale.userListNoShow}'));
     }
 
     return ListView.builder(

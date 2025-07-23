@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:rarolabs/l10n/app_localizations.dart';
 import 'package:rarolabs/src/domain/entities/user.dart';
 import 'package:rarolabs/src/view/pages/user_profile/user_profile_viewmodel.dart';
 
@@ -16,7 +17,6 @@ class _UserProfilePageState extends State<UserProfilePage> {
   @override
   void initState() {
     super.initState();
-    // Generate fake data when the page is initialized
     Provider.of<UserProfileViewModel>(context, listen: false)
         .generateFakeData();
   }
@@ -62,6 +62,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
   }
 
   Widget _buildProfileInfoCard(UserProfileViewModel viewModel) {
+    final locale = AppLocalizations.of(context);
+
     return Card(
       elevation: 0,
       color: Colors.grey[100],
@@ -69,14 +71,16 @@ class _UserProfilePageState extends State<UserProfilePage> {
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            _buildInfoRow(Icons.work, 'Cargo', viewModel.jobTitle,
+            _buildInfoRow(
+                Icons.work, '${locale.userProfileJob}', viewModel.jobTitle,
                 key: const Key('profile_jobTitle')),
             const SizedBox(height: 16),
-            _buildInfoRow(Icons.business_center, 'Área', viewModel.jobArea,
+            _buildInfoRow(Icons.business_center, '${locale.userProfileArea}',
+                viewModel.jobArea,
                 key: const Key('profile_jobArea')),
             const SizedBox(height: 24),
-            const Text(
-              'Biografia',
+            Text(
+              '${locale.userProfileBio}',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
@@ -93,8 +97,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String label, String value,
-      {Key? key}) {
+  Widget _buildInfoRow(IconData icon, String label, String value, {Key? key}) {
     return Row(
       children: [
         Icon(icon, color: Theme.of(context).primaryColor),

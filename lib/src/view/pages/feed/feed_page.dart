@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rarolabs/l10n/app_localizations.dart';
 import 'package:rarolabs/src/view/pages/feed/feed_viewmodel.dart';
 import 'package:rarolabs/src/view/widgets/post_card.dart';
 
@@ -31,10 +32,10 @@ class _FeedPageState extends State<FeedPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<FeedViewModel>();
-
+    final locale = AppLocalizations.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Feed de Postagens'),
+        title: Text('${locale.feedsTitle}'),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(8.0),

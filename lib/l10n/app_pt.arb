@@ -1,0 +1,21 @@
+{
+    "email": "E-mail",
+    "password": "Senha",
+    "login": "Entrar",
+    "users": "Usuários",
+    "feeds": "Feeds",
+    "logout": "Sair",
+    "titleAppName": "Flutter MVVM Demo",
+    "splashTitle": "Raro Labs MVVM",
+    "loginWelcomeTitle": "Bem-vindo!",
+    "loginToContinue": "Faça login para continuar",
+    "loginInsertEmail": "Por favor, insira o e-mail",
+    "loginInsertPassword": "Por favor, insira a senha",
+    "feedsTitle": "Feed de Postagens",
+    "userListSearchByName": "Buscar por nome...",
+    "userListNotFound": "Nenhum usuário encontrado.",
+    "userListNoShow": "Nenhum usuário para exibir.",
+    "userProfileJob": "Cargo",
+    "userProfileBio": "Biografia",
+    "userProfileArea": "Área"
+}

@@ -16,6 +16,6 @@ class UserProfileViewModel extends ChangeNotifier {
     _jobTitle = faker.job.title();
     _jobArea = faker.company.position();
     _biography = faker.lorem.sentences(5).join(' ');
-    notifyListeners();
   }
+
 }

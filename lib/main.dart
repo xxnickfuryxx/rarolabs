@@ -7,6 +7,8 @@ import 'package:rarolabs/src/view/pages/login/login_viewmodel.dart';
 import 'package:rarolabs/src/view/pages/splash/splash_page.dart';
 import 'package:rarolabs/src/view/pages/user_list/user_list_viewmodel.dart';
 import 'package:rarolabs/src/view/pages/user_profile/user_profile_viewmodel.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   // Initialize dependency injection
@@ -28,10 +30,19 @@ class RaroLabsApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => getIt<UserProfileViewModel>()),
       ],
       child: MaterialApp(
-        title: 'Flutter MVVM Demo',
         theme: AppTheme.lightTheme,
         debugShowCheckedModeBanner: false,
         home: const SplashPage(),
+        localizationsDelegates: [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('en', 'US'), // English
+          Locale('pt', 'BR'), // Portuguese
+        ],
       ),
     );
   }

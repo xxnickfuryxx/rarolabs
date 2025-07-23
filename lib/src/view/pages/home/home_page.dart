@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rarolabs/l10n/app_localizations.dart';
 import 'package:rarolabs/src/view/pages/feed/feed_page.dart';
 import 'package:rarolabs/src/view/pages/user_list/user_list_page.dart';
 
@@ -25,19 +26,20 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     return Scaffold(
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.people),
-            label: 'Usuários',
+            label: '${locale.users}',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.article),
-            label: 'Feed',
+            label: '${locale.feeds}',
           ),
         ],
         currentIndex: _selectedIndex,

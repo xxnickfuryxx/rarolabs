@@ -37,7 +37,6 @@ class UserListViewModel extends ChangeNotifier {
 
     _isLoading = true;
     _errorMessage = null;
-    notifyListeners();
 
     try {
       if (_currentPage <= 2) {

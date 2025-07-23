@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rarolabs/l10n/app_localizations.dart';
 import 'package:rarolabs/src/view/pages/login/login_viewmodel.dart';
 import 'package:rarolabs/src/view/pages/home/home_page.dart';
 
@@ -43,7 +44,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     final viewModel = context.watch<LoginViewModel>();
-
+    final locale = AppLocalizations.of(context);
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -54,41 +55,46 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Icon(Icons.lock_open, size: 80, color: Theme.of(context).primaryColor),
+                Icon(Icons.lock_open,
+                    size: 80, color: Theme.of(context).primaryColor),
                 const SizedBox(height: 24),
-                const Text(
-                  'Bem-vindo!',
+                Text(
+                  '${locale.loginWelcomeTitle}',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Faça login para continuar',
+                  '${locale.loginToContinue}',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 16, color: Colors.grey[600]),
                 ),
                 const SizedBox(height: 40),
                 TextFormField(
                   controller: _emailController,
-                  decoration: const InputDecoration(labelText: 'E-mail', prefixIcon: Icon(Icons.email)),
+                  decoration: InputDecoration(
+                      labelText: '${locale.email}',
+                      prefixIcon: Icon(Icons.email)),
                   keyboardType: TextInputType.emailAddress,
                   validator: (value) =>
-                      value!.isEmpty ? 'Por favor, insira o e-mail' : null,
+                      value!.isEmpty ? '${locale.loginInsertEmail}' : null,
                 ),
                 const SizedBox(height: 16),
                 TextFormField(
                   controller: _passwordController,
-                  decoration: const InputDecoration(labelText: 'Senha', prefixIcon: Icon(Icons.lock)),
+                  decoration: InputDecoration(
+                      labelText: '${locale.password}',
+                      prefixIcon: Icon(Icons.lock)),
                   obscureText: true,
                   validator: (value) =>
-                      value!.isEmpty ? 'Por favor, insira a senha' : null,
+                      value!.isEmpty ? '${locale.loginInsertPassword}' : null,
                 ),
                 const SizedBox(height: 32),
                 viewModel.isLoading
                     ? const Center(child: CircularProgressIndicator())
                     : ElevatedButton(
                         onPressed: _login,
-                        child: const Text('ENTRAR'),
+                        child: Text('${locale.login}'),
                       ),
               ],
             ),

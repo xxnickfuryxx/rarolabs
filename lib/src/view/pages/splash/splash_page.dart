@@ -1,5 +1,6 @@
 // coverage:ignore-file
 import 'package:flutter/material.dart';
+import 'package:rarolabs/l10n/app_localizations.dart';
 import 'package:rarolabs/src/domain/usecases/check_auth_status_usecase.dart';
 import 'package:rarolabs/src/utils/dependencies.dart';
 import 'package:rarolabs/src/view/pages/home/home_page.dart';
@@ -36,6 +37,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context);
     return Scaffold(
       body: Center(
         child: Column(
@@ -44,7 +46,7 @@ class _SplashPageState extends State<SplashPage> {
             Icon(Icons.flutter_dash,
                 size: 100, color: Theme.of(context).primaryColor),
             const SizedBox(height: 20),
-            const Text('Raro Labs MVVM',
+            Text('${locale.splashTitle}',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
             const SizedBox(height: 20),
             const CircularProgressIndicator(),
